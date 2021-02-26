@@ -75,6 +75,7 @@ public class CapsuleMovement : MonoBehaviour
             newRoom.gameObject.SetActive(true);
             door.gameObject.SetActive(false);
             oldRoom.gameObject.SetActive(false);
+            startPos = transform.position;
         }
 
      
