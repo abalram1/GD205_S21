@@ -3,7 +3,14 @@ guid: cdb10510ebfcfbc479be359a8c2ccbc0
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - hazard: {instanceID: 0}
+  - key: {instanceID: 0}
+  - door: {instanceID: 0}
+  - newRoom: {instanceID: 0}
+  - oldRoom: {instanceID: 0}
+  - speaker: {instanceID: 0}
+  - hazardClip: {fileID: 8300000, guid: 214835f33e3b19047b5812fc0080e011, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
