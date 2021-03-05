@@ -5,33 +5,35 @@ using UnityEngine;
 public class CapsuleMovement : MonoBehaviour
 {
     public Vector3 fwd, bwd, lft, rgt, up, dwn;
+
+    public Transform[] hazard; 
     
-    public Transform hazard, key, door, FirstGameBoard, SecondGameBoard, ThirdGameBoard, FourthGameBoard, FifthGameBoard, SixthGameBoard;
-    
+    public Transform key, door, FirstGameBoard, SecondGameBoard, ThirdGameBoard, FourthGameBoard, FifthGameBoard, SixthGameBoard;
+
     Vector3 startPos1, startPos2, startPos3, startPos4, startPos5, startPos6;
-    
+
     Vector3 randomPos1, randomPos2, randomPos3, randomPos4, randomPos5, randomPos6;
 
-    Vector3 randomDoorPos1, randomDoorPos2, randomDoorPos3, randomDoorPos4, randomDoorPos5, randomDoorPos6; 
-    
+    Vector3 randomDoorPos1, randomDoorPos2, randomDoorPos3, randomDoorPos4, randomDoorPos5, randomDoorPos6;
+
     Vector3 KeyPos1, KeyPos2, KeyPos3, KeyPos4, KeyPos5, KeyPos6;
 
     Vector3 hazardPos1, hazardPos2, hazardPos3, hazardPos4, hazardPos5, hazardPos6;
-    
+
     Vector3 doorPos1, doorPos2, doorPos3, doorPos4, doorPos5, doorPos6;
-    
+
     float randomhazardX1, randomhazardX2, randomhazardX3, randomhazardX4, randomhazardX5, randomhazardX6, randomhazardY1, randomhazardY2, randomhazardY3, randomhazardY4, randomhazardY5, randomhazardY6, randomhazardZ1, randomhazardZ2, randomhazardZ3, randomhazardZ4, randomhazardZ5, randomhazardZ6;
-    
+
     float randomplayerX1, randomplayerX2, randomplayerX3, randomplayerX4, randomplayerX5, randomplayerX6, randomplayerY1, randomplayerY2, randomplayerY3, randomplayerY4, randomplayerY5, randomplayerY6, randomplayerZ1, randomplayerZ2, randomplayerZ3, randomplayerZ4, randomplayerZ5, randomplayerZ6;
-    
+
     float randomDoorX1, randomDoorX2, randomDoorX3, randomDoorX4, randomDoorX5, randomDoorX6, randomDoorY1, randomDoorY2, randomDoorY3, randomDoorY4, randomDoorY5, randomDoorY6, randomDoorZ1, randomDoorZ2, randomDoorZ3, randomDoorZ4, randomDoorZ5, randomDoorZ6;
-    
+
     float randomKeyX1, randomKeyX2, randomKeyX3, randomKeyX4, randomKeyX5, randomKeyX6, randomKeyY1, randomKeyY2, randomKeyY3, randomKeyY4, randomKeyY5, randomKeyY6, randomKeyZ1, randomKeyZ2, randomKeyZ3, randomKeyZ4, randomKeyZ5, randomKeyZ6;
-    
+
     public bool hasKey;
-    
+
     public AudioSource speaker, capsule;
-    
+
     public AudioClip hazardClip, SmoothCriminal;
 
     void Start()
@@ -79,7 +81,7 @@ public class CapsuleMovement : MonoBehaviour
         startPos6 = randomPos6;
 
         randomDoorX1 = Random.Range(-10, 10);
-        randomDoorY1= Random.Range(-10, 10);
+        randomDoorY1 = Random.Range(-10, 10);
         randomDoorZ1 = Random.Range(-10, 10);
         randomDoorPos1 = new Vector3(randomDoorX1, randomDoorY1, randomDoorZ1);
 
@@ -145,7 +147,7 @@ public class CapsuleMovement : MonoBehaviour
         randomKeyY6 = Random.Range(-10, 10);
         randomKeyZ6 = Random.Range(-10, 10);
         KeyPos6 = new Vector3(randomKeyX6, randomKeyY6, randomKeyZ6);
-        
+
         //key.position = randomKeyPos;
 
         randomhazardX1 = Random.Range(-10, 10);
@@ -177,15 +179,15 @@ public class CapsuleMovement : MonoBehaviour
         randomhazardY6 = Random.Range(-10, 10);
         randomhazardZ6 = Random.Range(-10, 10);
         hazardPos6 = new Vector3(randomhazardX6, randomhazardY6, randomhazardZ6);
-        
+
         hasKey = false;
-        
+
     }
 
 
     void Update()
     {
-        capsule.PlayOneShot(SmoothCriminal, .9f);
+        capsule.PlayOneShot(SmoothCriminal, .5f);
 
         if (Input.GetKeyDown(KeyCode.W))
         {
@@ -223,48 +225,55 @@ public class CapsuleMovement : MonoBehaviour
             transform.position += dwn;
         }
 
-       
-        if (hazardPos1 == transform.position)
-        {
-            Debug.Log("That was terrible!");
-            transform.position = startPos1;
-            speaker.PlayOneShot(hazardClip, .9f);
-        }
 
-        if (hazardPos2 == transform.position)
+        for(int i = 0; i < hazard.Length; i++)
         {
-            Debug.Log("Reset");
-            transform.position = startPos2;
-            speaker.PlayOneShot(hazardClip, .9f);
+            if(hazard[i].position == transform.position)
+            {   transform.position = startPos1;
+                speaker.PlayOneShot(hazardClip, .9f);
+            }
         }
+        //if (hazardPos1 == transform.position)
+        //{
+        //   Debug.Log("That was terrible!");
+        //    transform.position = startPos1;
+        //    speaker.PlayOneShot(hazardClip, .9f);
+        //}
 
-        if (hazardPos3 == transform.position)
-        {
-            Debug.Log("Nice try");
-            transform.position = startPos3;
-            speaker.PlayOneShot(hazardClip, .9f);
-        }
+        //if (hazardPos2 == transform.position)
+        //{
+        //    Debug.Log("Reset");
+        //    transform.position = startPos2;
+        //   speaker.PlayOneShot(hazardClip, .9f);
+        //}
 
-        if (hazardPos4 == transform.position)
-        {
-            Debug.Log("Can you make it?");
-            transform.position = startPos4;
-            speaker.PlayOneShot(hazardClip, .9f);
-        }
+        //if (hazardPos3 == transform.position)
+        //{
+        //    Debug.Log("Nice try");
+        //    transform.position = startPos3;
+        //    speaker.PlayOneShot(hazardClip, .9f);
+        //}
 
-        if (hazardPos5 == transform.position)
-        {
-            Debug.Log("Almost");
-            transform.position = startPos5;
-            speaker.PlayOneShot(hazardClip, .9f);
-        }
+        //if (hazardPos4 == transform.position)
+        //{
+        //    Debug.Log("Can you make it?");
+        //    transform.position = startPos4;
+        //    speaker.PlayOneShot(hazardClip, .9f);
+        //}
 
-        if (hazardPos6 == transform.position)
-        {
-            Debug.Log("So close!");
-            transform.position = startPos6;
-            speaker.PlayOneShot(hazardClip, .9f);
-        }
+        //if (hazardPos5 == transform.position)
+        //{
+        //    Debug.Log("Almost");
+        //    transform.position = startPos5;
+        //    speaker.PlayOneShot(hazardClip, .9f);
+        //}
+
+        //if (hazardPos6 == transform.position)
+        //{
+        //    Debug.Log("So close!");
+        //    transform.position = startPos6;
+        //    speaker.PlayOneShot(hazardClip, .9f);
+        //}
 
         if (KeyPos1 == transform.position)
         {
@@ -345,9 +354,7 @@ public class CapsuleMovement : MonoBehaviour
 
         if (doorPos6 == transform.position && hasKey)
         {
-            Debug.Log("You win! Congrats!");  
+            Debug.Log("You win! Congrats!");
         }
     }
-
-
 }
