@@ -23,9 +23,10 @@ public class PredatorPrey : MonoBehaviour
         {
             myRB.AddForce(Vector3.Normalize(target.position - transform.position) * thrustAmt);
         }
-       // if (Input.GetKeyDown(KeyCode.F))
-        //{
-        //    thrustAmt *= -1f;
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            thrustAmt *= -1f;
         }
     }
-
+}
