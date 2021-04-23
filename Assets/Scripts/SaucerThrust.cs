@@ -43,7 +43,7 @@ public class SaucerThrust : MonoBehaviour
 
       if (Input.GetKey(KeyCode.A)) //move left
         {
-            rb.AddForce(new Vector3(0f, 0f, -1f) * thrustAmt);
+            rb.AddForce(new Vector3(-1f, 0f, 0f) * thrustAmt);
         }
 
       if (Input.GetKey(KeyCode.Space)) //brake

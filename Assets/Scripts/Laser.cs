@@ -7,6 +7,7 @@ public class Laser : MonoBehaviour
     public float explosionForce = 50f;
     int howManyThingsHit = 0;
     //Rigidbody rb;
+    public GameObject spawnItem;
 
     // Start is called before the first frame update
     void Start()
@@ -26,13 +27,18 @@ public class Laser : MonoBehaviour
             Debug.Log("You hit" + hit.transform.gameObject.name);
             //hit.transform.localScale += new Vector3(1f, 1f, 1f);
                 
-              if (hit.rigidbody && hit.transform != transform && Input.GetMouseButton(0))
-              {
+                if (Input.GetMouseButtonDown(1))
+                {
+                Instantiate(spawnItem, hit.point, Quaternion.identity);
+                }
+                
+                if (hit.rigidbody && hit.transform != transform && Input.GetMouseButton(0))
+                {
                 Debug.Log("PEWPEWPEW");
                 hit.rigidbody.AddExplosionForce(explosionForce, hit.point, 10f, 5f);
                 
                 howManyThingsHit++;
-                Debug.Log("You hit" + howManyThingsHit + "things");
+                Debug.Log("You hit" + " " + howManyThingsHit + " " + "things");
                 
                 hit.transform.gameObject.GetComponent<Renderer>().material.color = Color.red;
                 //Destroy(hit.transform.gameObject);    

@@ -44230,6 +44230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionForce: 5
+  spawnItem: {fileID: 2000355939}
 --- !u!1 &1737453900
 GameObject:
   m_ObjectHideFlags: 0

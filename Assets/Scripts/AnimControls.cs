@@ -16,10 +16,19 @@ public class AnimControls: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ninjadance.SetInteger("Animation State", 0);
+        flipkick.SetInteger("Animation State", 0);
+
         if (Input.GetKeyDown(KeyCode.W))
         {
             ninjadance.SetInteger("Animation State", 1);
             flipkick.SetInteger("Animation State", 1);
+
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                ninjadance.SetInteger("Aimation State", 6);
+                flipkick.SetInteger("Animation State", 6);
+                }
         }
 
         if (Input.GetKeyDown(KeyCode.D))
